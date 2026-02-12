@@ -1,0 +1,18 @@
+# Dependências (Pesadas, não subir!)
+node_modules/
+
+# Build (Gerado automaticamente)
+dist/
+build/
+
+# Variáveis de Ambiente (SEGURANÇA: NUNCA SUBIR ISSO!)
+.env
+
+# Logs e Arquivos de Sistema
+*.log
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
