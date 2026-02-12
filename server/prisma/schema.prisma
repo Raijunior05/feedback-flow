@@ -1,0 +1,41 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String    @id @default(uuid())
+  email     String    @unique
+  password  String
+  createdAt DateTime  @default(now())
+  // Relação: Um usuário tem muitos projetos
+  projects  Project[]
+}
+
+model Project {
+  id          String     @id @default(uuid())
+  name        String
+  description String?
+  createdAt   DateTime   @default(now())
+  
+  // Relacionamento com Usuário
+  userId      String
+  user        User       @relation(fields: [userId], references: [id])
+
+  // Relacionamento com Feedback (A PARTE QUE FALTAVA)
+  feedbacks   Feedback[]
+}
+
+model Feedback {
+  id        String   @id @default(uuid())
+  content   String
+  
+  // Relacionamento com Projeto
+  projectId String
+  project   Project  @relation(fields: [projectId], references: [id])
+  
+  createdAt DateTime @default(now())
+}
